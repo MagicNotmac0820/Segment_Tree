@@ -27,7 +27,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "(C): Build"
+            "preLaunchTask": "(C): build"
         }
     ]
 }
