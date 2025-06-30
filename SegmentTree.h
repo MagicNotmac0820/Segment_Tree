@@ -65,7 +65,7 @@ class SegmentTree{
         // delete tree recursively
         void deleteTree( Node<T> *& ) ;
         // query recursively
-        T getValue( const Node<T> *&root , size_t begin , size_t end )const ;
+        T getValue( const Node<T> *root , size_t begin , size_t end )const ;
 
         // check if the update index is within the bound
         bool isWithinBounds( size_t index )const {
@@ -209,18 +209,18 @@ void SegmentTree<T,Algo>::update( size_t index , T data ){
 }
 
 template<typename T,typename Algo>
-T SegmentTree<T,Algo>::getValue( const Node<T> *&root , size_t begin , size_t end )const {
+T SegmentTree<T,Algo>::getValue( const Node<T> *root , size_t begin , size_t end )const {
     if( begin == root->getLowerBound() && end == root->getUpperBound() )
         return root->value ;
     
     size_t mid = ( root->getLowerBound() + root->getUpperBound() ) / 2 ;
     if( begin > mid )
-        return getValue( const_cast<const Node<T> *&>(root->right) , begin , end ) ;
+        return getValue( root->right , begin , end ) ;
     if( end <= mid )
-        return getValue( const_cast<const Node<T> *&>(root->left) , begin , end ) ;
+        return getValue( root->left , begin , end ) ;
 
-    return _prefixAlgo( getValue( const_cast<const Node<T> *&>(root->left) , begin , mid ) ,
-                        getValue( const_cast<const Node<T> *&>(root->right) , mid+1 , end ) ) ;
+    return _prefixAlgo( getValue( root->left , begin , mid ) ,
+                        getValue( root->right , mid+1 , end ) ) ;
 }
 
 template<typename T,typename Algo>
@@ -230,7 +230,7 @@ T SegmentTree<T,Algo>::query( size_t begin , size_t end )const {
     if(!isWithinBounds( begin , end ))
         throw std::out_of_range("Query range is out of bounds!") ;
         
-    return getValue( const_cast<const Node<T> *&>(root) , begin , end ) ;
+    return getValue( root , begin , end ) ;
 }
 
 template<typename T,typename Algo>
@@ -240,7 +240,7 @@ T SegmentTree<T,Algo>::query( const std::pair<size_t,size_t> &queryInterval )con
     if(!isWithinBounds( queryInterval.first , queryInterval.second ))
         throw std::out_of_range("Query range is out of bounds!") ;
 
-    return getValue( const_cast<const Node<T> *&>(root) , queryInterval.first , queryInterval.second ) ;
+    return getValue( root , queryInterval.first , queryInterval.second ) ;
 }
 
 template<typename T,typename Algo>
@@ -250,6 +250,8 @@ void SegmentTree<T,Algo>::updateRange( size_t begin ,  size_t end , const Updati
         throw std::runtime_error("The lower bound of the interval should not be greater than the upper bound of the interval.") ;
     if(!isWithinBounds( begin , end ))
         throw std::out_of_range("Update range is out of bounds!") ;
+
+    // Not yet implemented
 }
 
 template<typename T,typename Algo>
@@ -259,6 +261,8 @@ void SegmentTree<T,Algo>::updateRange( const std::pair<size_t,size_t> &updateInt
         throw std::runtime_error("The lower bound of the interval should not be greater than the upper bound of the interval.") ;
     if(!isWithinBounds( updateInterval.first , updateInterval.second ))
         throw std::out_of_range("Update range is out of bounds!") ;
+
+    // Not yet implemented
 }
 
 #endif	//__SEGMENTTREE_H__
