@@ -1,10 +1,10 @@
 # Segment_Tree
 
 ## Quick reference
-- [Constructor]()
-- [Range Query]()
-- [Single-Point Update]()
-- [Range Update]()
+- [Constructor](https://github.com/MagicNotmac0820/Segment_Tree?tab=readme-ov-file#constructor)
+- [Single-Point Update](https://github.com/MagicNotmac0820/Segment_Tree?tab=readme-ov-file#single-point-update)
+- [Range Query](https://github.com/MagicNotmac0820/Segment_Tree?tab=readme-ov-file#range-query)
+- [Range Update](https://github.com/MagicNotmac0820/Segment_Tree?tab=readme-ov-file#range-update)
 
 ## Introduction
 A Segment Tree is an advanced data structure that efficiently supports range queries and updates, as well as single-point modifications. By leveraging a divide-and-conquer approach, it ensures both query and update operations run in $O(\log n)$ time, where $n$ is the number of elements. Segment Trees are widely used in scenarios such as interval sum, minimum/maximum queries, and range modifications.
