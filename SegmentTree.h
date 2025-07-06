@@ -88,7 +88,7 @@ class SegmentTree{
         // copy constructor
         SegmentTree( const SegmentTree<T,Algo> &other_tree ) : 
                      root(other_tree.root) , _prefixAlgo(other_tree._prefixAlgo) , 
-                     __tree_size(other_tree._tree_size){}
+                     __tree_size(other_tree.__tree_size){}
         // move constructor
         SegmentTree( SegmentTree<T,Algo> &&other_tree ) : 
                      root(std::move(other_tree.root)) , _prefixAlgo(std::move(other_tree._prefixAlgo)) ,
@@ -236,7 +236,7 @@ T SegmentTree<T,Algo>::query( size_t begin , size_t end )const {
 template<typename T,typename Algo>
 T SegmentTree<T,Algo>::query( const std::pair<size_t,size_t> &queryInterval )const {
     if(!isValidInterval( queryInterval.first , queryInterval.second ))
-        throw std::runtime_error("The lower bound of the interval shhould not be greater than the upper bound of the interval.") ;
+        throw std::runtime_error("The lower bound of the interval should not be greater than the upper bound of the interval.") ;
     if(!isWithinBounds( queryInterval.first , queryInterval.second ))
         throw std::out_of_range("Query range is out of bounds!") ;
 
